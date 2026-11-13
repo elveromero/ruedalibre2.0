@@ -1,0 +1,116 @@
+6. ROLES DE LAS TECNOLOGÍAS WEB EN EL PROYECTO (HTML, CSS Y JAVASCRIPT):
+
+- HTML (HyperText Markup Language):
+  * Rol: Es el esqueleto y la estructura semántica de la página web. Define los elementos principales como encabezados, párrafos, tablas de tarifas e imágenes.
+  * Ejemplo concreto: La etiqueta <table> con sus <thead>, <tbody> y <th scope="col"> utilizada para estructurar de manera accesible la lista de precios de alquiler en "tarifas.html".
+
+- CSS (Cascading Style Sheets):
+  * Rol: Es la capa de diseño visual y presentación. Se encarga de dar estilo, colores, tipografías, distribución (layouts) y adaptabilidad (diseño responsivo) para que el sitio luzca profesional.
+  * Ejemplo concreto: Aplicar una regla de color corporativo verde oscuro (#1b4d3e) al fondo de la barra de navegación y configurar las tarjetas de los tours para que se adapten a pantallas de celulares y computadoras.
+
+- JavaScript:
+  * Rol: Es el motor de interactividad y comportamiento dinámico del sitio. Permite reaccionar a las acciones del usuario en tiempo real sin necesidad de recargar la página completa.
+  * Ejemplo concreto: Un script que calcule automáticamente el costo total de un alquiler de bicicletas al seleccionar la cantidad de horas en un formulario interactivo y muestre el precio en tiempo real.
+
+  7. TABLA DE RUTAS RELATIVAS (NAVEGACIÓN DEL SITIO v0.1):
+
+| Archivo de Origen      | Destino enlazado       | Ruta escrita en el HTML         |
+|------------------------|------------------------|----------------------------------|
+| index.html             | index.html             | index.html                       |
+| index.html             | paginas/tarifas.html   | paginas/tarifas.html             |
+| index.html             | paginas/reservas.html  | paginas/reservas.html            |
+| paginas/tarifas.html   | index.html             | ../index.html                    |
+| paginas/tarifas.html   | paginas/tarifas.html   | tarifas.html                     |
+| paginas/tarifas.html   | paginas/reservas.html  | reservas.html                    |
+| paginas/reservas.html  | index.html             | ../index.html                    |
+| paginas/reservas.html  | paginas/tarifas.html   | tarifas.html                     |
+| paginas/reservas.html  | paginas/reservas.html  | reservas.html                    |
+8. DISEÑO DE REGIONES Y SEMÁNTICA (v0.2):
+
+- Esquema de regiones por página:
+  * index.html: <header> (Logo, H1, Nav), <main> (Secciones temáticas y Artículos de servicios), <footer> (Pie de página).
+  * paginas/tarifas.html: <header> (Logo, Nav), <main> (Secciones de tablas, notas de cliente) + <aside> (Contenido complementario: qué llevar), <footer>.
+  * paginas/reservas.html: <header> (Logo, Nav), <main> (Sección de reservas) + <aside> (Horario de atención detallado en lista de definiciones), <footer>.
+
+- Uso de div y span:
+  * Se eliminaron todos los contenedores genéricos innecesarios, reemplazándolos por etiquetas nativas semánticas (<header>, <main>, <section>, <article>, <aside>, <footer>). No se requirió mantener ningún div estructural genérico ya que la jerarquía semántica cubre el 100% del layout actual.
+
+  9. JUSTIFICACIÓN DE CONTROLES DEL FORMULARIO DE RESERVA:
+
+- Correo electrónico (<input type="email">):
+  * Justificación: Se eligió este tipo de campo porque incorpora validación nativa del navegador, asegurando que el texto ingresado cumpla con la estructura estándar de una dirección de correo electrónico (presencia de "@" y dominio), reduciendo errores de captura.
+
+- Fecha de reserva (<input type="date">):
+  * Justificación: Facilita la experiencia de usuario (UX) al desplegar un calendario gráfico interactivo nativo, evitando que el usuario deba digitar manualmente la fecha con un formato específico y previniendo entradas inválidas.
+
+- Tipo de bicicleta (<input type="radio">):
+  * Justificación: Es la opción más adecuada ya que las alternativas son mutuamente excluyentes (el usuario solo puede elegir una bicicleta a la vez). Al compartir el mismo atributo 'name', el navegador restringe la selección a una sola opción de manera visual y lógica.
+
+  10. TABLA DE PRUEBAS DE VALIDACIÓN DE FORMULARIO (RESERVAS):
+
+| Campo | Dato de prueba | Resultado esperado | Resultado obtenido |
+| :--- | :--- | :--- | :--- |
+| Nombre completo | "Al" | Bloquea envío (mínimo 3 caracteres) | Bloqueado correctamente por minlength |
+| Documento | "12345" | Bloquea envío (menos de 6 dígitos) | Bloqueado por patrón [0-9]{6,10} |
+| Documento | "12345a67" | Bloquea envío (contiene letras) | Bloqueado por restricción numérica de patrón |
+| Correo electrónico | "correo-sin-arroba" | Bloquea envío (formato inválido) | Bloqueado por control tipo email nativo |
+| Celular | "1234567890" | Bloquea envío (no empieza por 3) | Bloqueado por patrón 3[0-9]{9} |
+| Celular | "300123" | Bloquea envío (menos de 10 dígitos) | Bloqueado por patrón exacto de 10 dígitos |
+| Fecha del alquiler | "2026-10-15" | Bloquea envío (fuera del rango permitido) | Bloqueado por restricciones min/max de fecha |
+| Cantidad de bicis | "7" | Bloquea envío (máximo permitido es 6) | Bloqueado por atributo max=6 |
+
+11. AUDITORÍA DE ACCESIBILIDAD Y CORRECCIONES (v0.2):
+
+- Hallazgo 1 (Imágenes): En algunas páginas había imágenes con atributos 'alt' genéricos ("imagen", "foto").
+  * Corrección: Se actualizaron para ser estrictamente descriptivos según el contexto (ej. alt="Logo de Rueda Libre Medellín" y alt="Bicicleta urbana equipada con casco").
+- Hallazgo 2 (Enlaces fuera de contexto): Había enlaces con textos ambiguos como "Ver más" o "Clic aquí".
+  * Corrección: Se reescribieron los textos de enlace para que tengan sentido por sí mismos (ej. "Ver tabla completa de recorridos guiados y precios").
+- Hallazgo 3 (Jerarquía de encabezados): Riesgo de salto de nivel de título en secciones secundarias.
+  * Corrección: Se aseguró una estructura estrictamente descendente (un único <h1>, seguido de <h2> para secciones y <h3> para subsecciones/artículos).
+- Hallazgo 4 (Idioma del documento): La etiqueta raíz carecía de especificación de idioma o presentaba ambigüedades.
+  * Corrección: Se verificó e impuso uniformemente la propiedad <html lang="es"> en las tres páginas del sitio.
+- Hallazgo 5 (Navegación por teclado y foco): Algunos elementos interactivos y campos de formulario no garantizaban un orden lógico de tabulación secuencial.
+  * Corrección: Se reorganizó la secuencia de elementos en el DOM para permitir una navegación fluida mediante la tecla Tab y Shift + Tab sin saltos extraños.
+
+  12. COMPROBACIÓN DE HERENCIA EN DEVTOOLS (CSS):
+- Propiedad que SÍ se hereda:
+  * Propiedad: color (o font-family)
+  * Comprobación en Computed: En los párrafos (<p>), la pestaña Computed muestra que la propiedad 'color' (con valor var(--gris-asfalto)) es heredada directamente desde el elemento padre <body>, sin necesidad de declararla explícitamente en cada etiqueta de texto.
+- Propiedad que NO se hereda:
+  * Propiedad: background-color (o border, padding, margin)
+  * Comprobación en Computed: La propiedad 'background-color' de las secciones (<section>) no se hereda del elemento <body>; por defecto su valor heredado es 'transparent' y requiere una declaración propia o explícita para mostrar el fondo blanco.
+
+  13. ANÁLISIS DE ESPECIFICIDAD Y CONFLICTO DE LA CLASE .activo:
+- Selector del compañero: #menu a (Especificidad ID + Elemento: 0, 1, 1)
+- Selector de la clase: .activo (Especificidad Clase: 0, 1, 0)
+- Causa del problema: En la cascada de CSS, el selector #menu a posee mayor especificidad (cuenta con un ID = 100) en comparación con el selector de clase .activo (cuenta con una clase = 10). Debido a esto, las reglas de color definidas en #menu a sobrescribían y anulaban el color de la clase .activo, tachándola en DevTools.
+- Solución aplicada: Se incrementó la especificidad del selector de clase combinándolo con el elemento (ej. a.activo o #menu a.activo con especificidad 0, 1, 1 o 0, 2, 1), logrando que coexista con el menú sin usar !important ni estilos en línea.
+
+14. ESQUEMA DE REGIONES Y SEMÁNTICA (v0.2):
+
+- Esquema visual de regiones por página:
+  ┌─────────────────────────────────────────────────────────┐
+  │ <header> : Logo corporativo + H1 + <nav> (Menú principal)│
+  ├─────────────────────────────────────────────────────────┤
+  │ <main>   : Contenido principal único de la página       │
+  │            - index.html: <section> y <article> (Servicios)│
+  │            - tarifas.html: <section> (Tablas) + <aside> │
+  │            - reservas.html: <section> + <aside> (Horario)│
+  ├─────────────────────────────────────────────────────────┤
+  │ <footer> : Información institucional, correo y copyright  │
+  └─────────────────────────────────────────────────────────┘
+
+- Justificación sobre el uso de <div> y <span>:
+  * Durante esta reestructuración se eliminaron todos los contenedores genéricos (<div> y <span>) que carecían de significado semántico, reemplazándolos en su totalidad por etiquetas nativas (<header>, <nav>, <main>, <section>, <article>, <aside>, <footer>). No fue necesario conservar ningún <div> ya que la jerarquía semántica cubre de forma precisa y robusta toda la arquitectura del sitio.
+
+
+  15. JUSTIFICACIÓN DE ELECCIÓN DE CONTROLS EN EL FORMULARIO (RESERVAS):
+
+- Tipo de bicicleta (<input type="radio">):
+  * Justificación: Se eligieron botones de opción (radio) porque las categorías son mutuamente excluyentes (el usuario solo puede escoger un tipo de bicicleta: urbana, montaña o eléctrica). Al compartir el atributo 'name="tipo_bicicleta"', el navegador restringe la selección de forma visual e intuitiva a una sola opción.
+
+- Plan de alquiler (<select>):
+  * Justificación: Se empleó una lista desplegable (<select>) ya que permite agrupar múltiples opciones fijas de duración (1 hora, medio día, día completo) en un espacio reducido de la interfaz, optimizando el diseño vertical del formulario antes de que el usuario elija su tarifa.
+
+- Políticas de alquiler (<input type="checkbox">):
+  * Justificación: Se utilizó una casilla de verificación (checkbox) porque representa una acción explícita de asentimiento y aceptación de términos legales obligatorios previos al envío de los datos. El atributo 'required' asegura que no se pueda avanzar sin marcarla.

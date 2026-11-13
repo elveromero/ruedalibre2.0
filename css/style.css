@@ -1,0 +1,182 @@
+/* --- HOJA DE ESTILOS RUEDA LIBRE v1.0 --- */
+
+:root {
+    /* Paleta de colores oficial */
+    --verde-ruta: #1E7A4F;
+    --naranja-pedal: #F39A2B;
+    --azul-noche: #14213D;
+    --crema: #FAF6EF;
+    --gris-asfalto: #5B6470;
+
+    /* Familias tipográficas con respaldos */
+    --fuente-titulos: 'Montserrat', sans-serif;
+    --fuente-texto: 'Open Sans', sans-serif;
+
+    /* Escala de espaciado en rem */
+    --espacio-sm: 0.5rem;
+    --espacio-md: 1rem;
+    --espacio-lg: 2rem;
+}
+
+/* Aplicación por herencia en el cuerpo del documento */
+body {
+    font-family: var(--fuente-texto);
+    color: var(--gris-asfalto);
+    background-color: var(--crema);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Selector agrupado para aplicar la fuente de títulos a todos los encabezados */
+h1, h2, h3 {
+    font-family: var(--fuente-titulos);
+    color: var(--azul-noche);
+    font-weight: 700;
+}
+
+/* Encabezado y Navegación Principal */
+header {
+    background-color: var(--azul-noche);
+    color: var(--crema);
+    padding: var(--espacio-lg);
+    text-align: center;
+}
+
+header h1 {
+    color: var(--crema);
+    margin: var(--espacio-sm) 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: var(--espacio-md) 0 0 0;
+    display: flex;
+    justify-content: center;
+    gap: var(--espacio-lg);
+}
+
+nav a {
+    font-family: var(--fuente-titulos);
+    color: var(--crema);
+    text-decoration: none;
+    font-weight: 700;
+    padding: var(--espacio-sm) var(--espacio-md);
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover,
+nav a:focus {
+    background-color: var(--verde-ruta);
+    color: var(--crema);
+}
+
+/* Estructura y Secciones */
+main {
+    max-width: 900px;
+    margin: var(--espacio-lg) auto;
+    padding: 0 var(--espacio-md);
+}
+
+section, aside {
+    background-color: #ffffff;
+    margin-bottom: var(--espacio-lg);
+    padding: var(--espacio-lg);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(20, 33, 61, 0.1);
+}
+
+/* Enlaces generales del contenido */
+a {
+    color: var(--verde-ruta);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--naranja-pedal);
+    text-decoration: underline;
+}
+
+/* Botones y elementos interactivos */
+button[type="submit"] {
+    background-color: var(--verde-ruta);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--fuente-titulos);
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #155d3c;
+}
+
+/* Tablas accesibles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--espacio-md);
+}
+
+th, td {
+    border: 1px solid #d1d5db;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+th {
+    background-color: var(--azul-noche);
+    color: var(--crema);
+    font-family: var(--fuente-titulos);
+}
+
+/* Formularios */
+fieldset {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: var(--espacio-md);
+    margin-bottom: var(--espacio-md);
+}
+
+legend {
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    color: var(--azul-noche);
+    padding: 0 0.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: var(--fuente-texto);
+    box-sizing: border-box;
+}
+
+/* Pie de página */
+footer {
+    background-color: var(--azul-noche);
+    color: var(--crema);
+    text-align: center;
+    padding: var(--espacio-lg);
+    margin-top: 3rem;
+}
+
+footer a {
+    color: var(--naranja-pedal);
+}

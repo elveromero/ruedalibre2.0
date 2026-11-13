@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aparta tu bicicleta o tour guiado en Rueda Libre completando nuestro formulario validado de reservas.">
+    <title>Reservas | Rueda Libre Medellín</title>
+    <!-- Google Fonts Preconnect y Enlaces -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Hoja de estilos externa -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <a href="/index.html">
+            <img src="../img/logo.jpeg" alt="Logo de Rueda Libre" width="160">
+        </a>
+        <h1>Rueda Libre</h1>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Inicio</a></li>
+                <li><a href="/paginas/tarifas.html">Tarifas y rutas</a></li>
+                <li><a href="/paginas/reservas.html" class="activo">Reservas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Reserva tu bicicleta</h2>
+            <p>Completa el formulario de reserva asegurándote de cumplir con todas las reglas indicadas para procesar tu solicitud correctamente.</p>
+        </section>
+
+        <!-- Sección del Formulario con validación nativa -->
+        <section>
+            <h2>Formulario de reserva</h2>
+            <form action="#" method="post">
+                
+                <!-- Grupo 1: Tus datos -->
+                <fieldset>
+                    <legend>Tus datos</legend>
+                    
+                    <p>
+                        <label for="nombre">Nombre completo:</label>
+                        <input type="text" id="nombre" name="nombre" required minlength="3">
+                    </p>
+
+                    <p>
+                        <label for="documento">Número de documento:</label>
+                        <input type="text" id="documento" name="documento" required pattern="[0-9]{6,10}" title="Debe contener solo números, entre 6 y 10 dígitos.">
+                    </p>
+
+                    <p>
+                        <label for="correo">Correo electrónico:</label>
+                        <input type="email" id="correo" name="correo" required>
+                    </p>
+
+                    <p>
+                        <label for="celular">Celular de contacto:</label>
+                        <input type="tel" id="celular" name="celular" required pattern="3[0-9]{9}" title="Debe tener 10 dígitos y empezar obligatoriamente por el número 3 (ej. 3001234567).">
+                    </p>
+                </fieldset>
+
+                <!-- Grupo 2: Tu alquiler -->
+                <fieldset>
+                    <legend>Tu alquiler</legend>
+                    
+                    <p>Selecciona el tipo de bicicleta y plan:</p>
+                    <p>
+                        <input type="radio" id="bike-urbana" name="tipo_bicicleta" value="urbana" checked>
+                        <label for="bike-urbana">Urbana estándar</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="bike-montana" name="tipo_bicicleta" value="montana">
+                        <label for="bike-montana">Todo terreno / Montaña</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="bike-electrica" name="tipo_bicicleta" value="electrica">
+                        <label for="bike-electrica">Eléctrica</label>
+                    </p>
+
+                    <p>
+                        <label for="fecha-reserva">Fecha del alquiler (Noviembre - Diciembre 2026):</label>
+                        <input type="date" id="fecha-reserva" name="fecha_reserva" required min="2026-11-01" max="2026-12-31">
+                    </p>
+
+                    <p>
+                        <label for="cantidad-bicicletas">Cantidad de bicicletas (1 a 6):</label>
+                        <input type="number" id="cantidad-bicicletas" name="cantidad_bicicletas" required min="1" max="6" value="1">
+                    </p>
+
+                    <p>
+                        <label for="comentarios">Comentarios (máximo 300 caracteres):</label><br>
+                        <textarea id="comentarios" name="comentarios" rows="4" cols="40" maxlength="300"></textarea>
+                    </p>
+                </fieldset>
+
+                <!-- Grupo 3: Confirmación -->
+                <fieldset>
+                    <legend>Confirmación</legend>
+                    
+                    <p>
+                        <input type="checkbox" id="politicas" name="politicas" value="aceptadas" required>
+                        <label for="politicas">Es obligatorio aceptar las políticas de alquiler, uso de casco y candado.</label>
+                    </p>
+                </fieldset>
+            
+                <!-- Botón de envío -->
+                <p>
+                    <button type="submit">Enviar Solicitud de Reserva</button>
+                </p>
+
+            </form>
+        </section>
+
+        <!-- Contenido complementario: Horario -->
+        <aside>
+            <h3>Horario de atención y reservas</h3>
+            <dl>
+                <dt>Lunes a Viernes</dt> <dd>08:00 AM – 06:00 PM</dd>
+                <dt>Sábados</dt>         <dd>08:00 AM – 04:00 PM</dd>
+                <dt>Domingos y Festivos</dt>  <dd>09:00 AM – 02:00 PM</dd>
+            </dl>
+        </aside>
+    </main>
+
+    <footer>
+        <p>Rueda Libre | Correo: <a href="mailto:hola@ruedalibre.example">hola@ruedalibre.example</a> | &copy; 2026</p>
+    </footer>
+
+</body>
+</html>
